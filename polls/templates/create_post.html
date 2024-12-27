@@ -1,0 +1,33 @@
+{% extends 'home.html' %}
+
+{% block title %}Создание поста{% endblock %}
+
+{% block main %}
+<form method="post">
+    {% csrf_token %}
+    <h2>Создание постов</h2>
+    <label for="title">Название</label>
+    <input type="text" name="title">
+    <br>
+    <label for="description">Описание</label>
+    <input type="text" name="description">
+    <br>
+    <label for="number">Номер</label>
+    <input type="text" name="number">
+    <br>
+    <label for="date">Дата</label>
+    <input type="date" name="date">
+    <br>
+    <label for="time">Время</label>
+    <input type="time" name="time">
+    <br>
+
+    <button type="submit">Создать</button>
+    <button type="reset">Очистить форму</button>
+
+    {% if error %}
+    <div style="color: red;">{{error}}</div>
+    {% endif %}
+</form>
+
+{% endblock %}

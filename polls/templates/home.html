@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}Главная{% endblock %}</title>
+</head>
+<body>
+<header>
+    {% if user.is_staff %}
+    <a href="{% url 'create_post' %}">Создание постов</a>
+    {% endif %}
+    <a href="{% url 'home' %}">Посты</a>
+    <a href="{% url 'profile' %}">Профиль</a>
+    {% if user.is_authenticated %}
+    <a href="{% url 'logout' %}">Выйти</a>
+    {% else %}
+    <a href="{% url 'logout' %}">Войти</a>
+    <a href="{% url 'register' %}">Зарегистрироваться</a>
+    {% endif %}
+</header>
+<main>
+    {% block main %}
+    <form method="get">
+        <input type="text" name="query" placeholder="Поиск..." value="{{query}}">
+        <button type="submit">найти</button>
+    </form>
+        <h2>Посты:</h2>
+    {% for post in posts %}
+        <div>
+            <a href="{% url 'post_detail' post.id %}">{{ post.title }}</a>
+            <p>{{ post.description }}</p>
+            <strong>{{ post.number }}</strong>
+            <p>{{ post.date }}</p>
+            <p>{{ post.time }}</p>
+        </div>
+    {% endfor %}
+    {% endblock %}
+</main>
+</body>
+</html>

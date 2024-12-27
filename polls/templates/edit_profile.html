@@ -1,0 +1,29 @@
+{% extends 'home.html' %}
+
+{% block title %}{% endblock %}
+
+{% block main %}
+    <form  method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2>Редактирование профиля</h2>
+        <br>
+        <label for="user">логин</label>
+        <input type="text" name="user" value="{{user_profile.user}}">
+        <br>
+        <label for="first_name">имя</label>
+        <input type="text" name="first_name" value="{{user_profile.first_name}}">
+        <br>
+        <label for="last_name">фамилия</label>
+        <input type="text" name="last_name" value="{{user_profile.last_name}}">
+        <br>
+        <label for="middle_name">отчество</label>
+        <input type="text" name="middle_name" value="{{user_profile.middle_name}}">
+        <br>
+        <label for="avatar">аватарка</label>
+        <input type="file" name="avatar" value="{{user_profile.avatar.url}}">
+        <br>
+        <button type="submit">редактировать</button>
+        <button type="reset">сбросить</button>
+
+    </form>
+{% endblock %}

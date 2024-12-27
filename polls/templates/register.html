@@ -1,0 +1,41 @@
+{% extends 'home.html' %}
+    {% block title %}Регистрация{% endblock %}
+
+{% block main %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2>Регистрация</h2>
+        <br>
+        <label for="user">Логин</label>
+        <input type="text" name="user">
+        <br>
+        <label for="firs_name">Имя</label>
+        <input type="text" name="first_name">
+        <br>
+        <label for="last_name">Фамилию</label>
+        <input type="text" name="last_name">
+        <br>
+        <label for="middle_name">Отчество</label>
+        <input type="text" name="middle_name">
+        <br>
+        <label for="password">Пароль</label>
+        <input type="password" name="password">
+        <br>
+        <label for="passwrod2">Повторите пароль</label>
+        <input type="password" name="password2">
+        <br>
+        <label for="avatar">Аватар</label>
+        <input type="file" name="avatar">
+        <br>
+
+        <button type="submit">Зарегистрироваться</button>
+        <button type="reset">Сброс</button>
+
+        <a href="{% url 'login' %}">Уже есть аккаунт?</a>
+
+        {% if error %}
+        <div style="color: red;">{{ error }}</div>
+        {% endif %}
+
+    </form>
+{% endblock %}

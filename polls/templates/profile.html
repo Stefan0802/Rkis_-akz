@@ -1,0 +1,13 @@
+{% extends 'home.html' %}
+    {% block title %}Профиль{% endblock %}
+
+{% block main%}
+    <h2>{{ user_profile.user }}</h2>
+    <p>{{ user_profile.last_name }} {{ user_profile.first_name }} {{ user_profile.middle_name }}</p>
+    {% if user_profile.avatar %}
+    <img src="{{ user_profile.avatar.url }}" alt="картинка" style="width: 150px; border-radius: 50%; height: 150px;">
+    {% else %}
+    <p>картинки нету</p>
+    {% endif %}
+    <a href="{% url 'edit_profile' %}">редактировать профиль</a>
+{% endblock%}

@@ -1,0 +1,24 @@
+{% extends 'home.html' %}
+{% block title %}Авторизация{% endblock %}
+
+{% block main %}
+<form method="post">
+    {% csrf_token %}
+    <h2>Авторизация</h2>
+    <label for="user">Логин</label>
+    <input type="text" name="user">
+    <br>
+    <label for="password">Пароль</label>
+    <input type="password" name="password">
+    <br>
+
+    <button type="submit">Войти</button>
+    <button type="reset">Очистить форму</button>
+
+    <a href="{% url 'register' %}">Нету аккаунта? зарегистрируйся</a>
+
+    {% if error %}
+    <div style="color: red;">{{ error }}</div>
+    {% endif %}
+</form>
+{% endblock %}
